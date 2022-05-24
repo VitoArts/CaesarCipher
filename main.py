@@ -1,10 +1,23 @@
+#Better second version
+def ceasarCipherSuperior(inputStr, inputKey):
+    newString = ''
+    for char in inputStr:
+        if char == ' ':
+            newString += ' '
+        else:
+            position = alphabet.find(char)
+            newChar = alphabet[(position+inputKey)%26]
+            newString += newChar
+    print(newString)
 
+#Rough first version
 alphabetDict = {}
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 position = 0
 spaceKeeper = []
 
 def ceasarCipher(input, key):
+    #Ideally we get rid of this double loop in some way
     for x in range(len(input)):
         for index in alphabetDict:
             if alphabetDict[index] == input[x]:
@@ -29,3 +42,8 @@ if __name__ == '__main__':
         findSpace(inputStr)
     inputKey = input("Enter your key (int): ")
     ceasarCipher(inputStr, inputKey)
+
+if __name__ == '__main__':
+    inputStr = input("Enter your string: ")
+    inputKey = input("Enter your key (int): ")
+    ceasarCipherSuperior(inputStr, int(inputKey))

@@ -1,49 +1,26 @@
-#Better second version
-def ceasarCipherSuperior(inputStr, inputKey):
-    newString = ''
-    for char in inputStr:
-        if char == ' ':
-            newString += ' '
-        else:
-            position = alphabet.find(char)
-            newChar = alphabet[(position+inputKey)%26]
-            newString += newChar
-    print(newString)
-
-#Rough first version
-alphabetDict = {}
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 position = 0
-spaceKeeper = []
 
-def ceasarCipher(input, key):
-    #Ideally we get rid of this double loop in some way
-    for x in range(len(input)):
-        for index in alphabetDict:
-            if alphabetDict[index] == input[x]:
-                position = index
-        newChar = alphabetDict[(position + int(key)) % 26]
-        input = input[:x] + newChar + input[x+1:]
-    if spaceKeeper != []:
-        for space in range(len(spaceKeeper)):
-            input = input[:spaceKeeper[space]] + ' ' + input[spaceKeeper[space]+1:]
-    print(input)
+#Application to print all 25 possibilities to find out if the cipher used in a caesarcipher.
+def caesar_cipher_cracker(input_str):
+    print("All keys: ")
+    for count in range(25):
+        print("if key = " + str(count+1))
+        caesar_cipher(input_str, count+1)
 
-def findSpace(input):
-    for index in range(len(input)):
-        if input[index] == ' ':
-            spaceKeeper.append(index)
-
-if __name__ == '__main__':
-    for x in range(26):
-        alphabetDict[x+1] = alphabet[x]
-    inputStr = input("Enter your string: ")
-    if inputStr.count('') > 0:
-        findSpace(inputStr)
-    inputKey = input("Enter your key (int): ")
-    ceasarCipher(inputStr, inputKey)
+def caesar_cipher(input_str, input_key):
+    new_string = ''
+    for char in input_str:
+        if char == ' ':
+            new_string += ' '
+        else:
+            position = alphabet.find(char)
+            new_char = alphabet[(position+input_key)%26]
+            new_string += new_char
+    print(new_string)
 
 if __name__ == '__main__':
-    inputStr = input("Enter your string: ")
-    inputKey = input("Enter your key (int): ")
-    ceasarCipherSuperior(inputStr, int(inputKey))
+    input_str = input("Enter your string: ")
+    input_key = input("Enter your key (int): ")
+    caesar_cipher(input_str, int(input_key))
+    caesar_cipher_cracker(input_str)
